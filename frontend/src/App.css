@@ -1,0 +1,159 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+}
+
+/* Premium navbar */
+.top-navbar {
+  height: 72px;
+  background: linear-gradient(90deg, #1d4ed8, #2563eb, #4f46e5);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.18);
+}
+
+.brand-text {
+  font-size: 30px;
+  font-weight: 800;
+  color: white;
+}
+
+.logout-btn {
+  border-radius: 14px;
+  padding: 10px 18px;
+  border: 1px solid rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.12);
+  color: white;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255,255,255,0.22);
+  transform: translateY(-1px);
+}
+
+/* Premium sidebar */
+.sidebar {
+  width: 240px;
+  min-height: calc(100vh - 72px);
+  background: linear-gradient(180deg, #60a5fa, #3b82f6, #4f46e5);
+  color: white;
+  box-shadow: 8px 0 30px rgba(59, 130, 246, 0.18);
+  padding-top: 10px;
+}
+
+.sidebar h4 {
+  font-weight: 800;
+}
+
+.sidebar .nav-link {
+  color: white !important;
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-bottom: 6px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.sidebar .nav-link:hover {
+  background: rgba(255,255,255,0.20);
+  transform: translateX(6px);
+}
+
+.sidebar .nav-link.active {
+  background: rgba(255,255,255,0.28);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Background */
+.dashboard-bg,
+.dashboard-page {
+  min-height: calc(100vh - 72px);
+  background: linear-gradient(135deg, #eef4ff, #f8fbff, #f5f3ff);
+  padding: 24px;
+}
+
+/* Premium header */
+.dashboard-header {
+  background: linear-gradient(135deg, #2563eb, #4f46e5, #7c3aed);
+  color: white;
+  border-radius: 24px;
+  padding: 34px 24px;
+  box-shadow: 0 18px 40px rgba(79, 70, 229, 0.22);
+}
+
+.dashboard-header h2 {
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.dashboard-header p {
+  margin: 0;
+  opacity: 0.95;
+  font-size: 15px;
+}
+
+/* Premium card */
+.premium-card {
+  border: none !important;
+  border-radius: 20px !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  transition: all 0.3s ease;
+}
+
+.premium-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+}
+
+/* Premium chart box */
+.chart-box {
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+/* Glass panel */
+.glass-panel {
+  background: rgba(255,255,255,0.85);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.6);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+.glass-card {
+  background: rgba(255,255,255,0.78) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255,255,255,0.55) !important;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.glass-input {
+  background: rgba(255,255,255,0.92) !important;
+  border-radius: 14px !important;
+  border: 1px solid #dbeafe !important;
+}
+
+.glass-card-soft {
+  border-radius: 18px;
+  color: white;
+  background-blend-mode: overlay;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.glass-card-soft:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.chart-box {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
