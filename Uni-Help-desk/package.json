@@ -1,27 +1,18 @@
 {
-  "name": "uni-help-desk",
+  "name": "uni-help-desk-system",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "description": "Uni Help Desk System — monorepo root",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.4",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.1",
-    "eslint": "^9.39.4",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
-    "globals": "^17.4.0",
-    "vite": "^8.0.1"
+    "dev": "npm run dev:backend & npm run dev:frontend",
+    "dev:frontend": "cd Frontend && npm run dev",
+    "dev:backend": "cd Backend && npm run dev",
+    "install:all": "npm run install:frontend && npm run install:backend",
+    "install:frontend": "cd Frontend && npm install",
+    "install:backend": "cd Backend && npm install",
+    "start:frontend": "cd Frontend && npm run preview",
+    "start:backend": "cd Backend && npm start",
+    "build": "cd Frontend && npm run build",
+    "lint": "cd Frontend && npm run lint"
   }
 }

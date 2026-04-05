@@ -11,3 +11,133 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* ===== PAGE BACKGROUND ===== */
+.dashboard-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eef4ff 0%, #f5f7ff 45%, #f3f0ff 100%);
+  padding: 20px;
+}
+
+/* ===== TOP NAVBAR ===== */
+.top-navbar {
+  background: linear-gradient(90deg, #0f172a, #1e293b);
+  color: white;
+  height: 70px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.top-navbar .brand-text {
+  font-size: 30px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.top-navbar .logout-btn {
+  border-radius: 12px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  transition: 0.3s;
+}
+
+.top-navbar .logout-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar-modern {
+  min-height: calc(100vh - 70px);
+  width: 220px;
+  background: linear-gradient(180deg, #0b132b 0%, #132042 50%, #1d3557 100%);
+  color: white;
+  box-shadow: 4px 0 16px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar-title {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 22px 22px 12px;
+}
+
+.sidebar-modern .nav-link {
+  color: #e5edff;
+  padding: 12px 18px;
+  margin: 6px 12px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.sidebar-modern .nav-link:hover {
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  color: white;
+}
+
+.sidebar-modern .nav-link.active {
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  color: white;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+/* ===== HEADER SECTION ===== */
+.dashboard-header {
+  background: linear-gradient(135deg, #2563eb, #4f46e5, #7c3aed);
+  color: white;
+  border-radius: 20px;
+  padding: 35px 20px;
+  box-shadow: 0 14px 32px rgba(79, 70, 229, 0.22);
+}
+
+.dashboard-header h2 {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.dashboard-header p {
+  margin: 0;
+  opacity: 0.95;
+}
+
+/* ===== MODERN GLASS / CARD ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08);
+  transition: 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.12);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-radius: 12px !important;
+  border: 1px solid #dbeafe !important;
+}
+
+/* ===== NOTIFICATION CARD ===== */
+.notification-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  border: 1px solid rgba(219, 234, 254, 0.8);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.06);
+  transition: 0.3s;
+}
+
+.notification-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.1);
+}

@@ -23,3 +23,11 @@
     "tailwindcss": "^4.2.1"
   }
 }
+  "dependencies": {
+    "recharts": "^3.8.0"
+  }
+}
+"scripts": {
+  "start": "node server.js",
+  "dev": "nodemon server.js"
+}
