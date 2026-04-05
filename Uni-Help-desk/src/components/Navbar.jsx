@@ -54,6 +54,8 @@ export default function Navbar() {
         {/* Desktop Nav */}
         {currentUser && (
           <div className="hidden md:flex gap-1">
+            <Link to="/dashboard" className={`px-3.5 py-1.5 rounded-lg text-sm font-medium transition-colors ${location.pathname === '/dashboard' ? 'text-blue-400 bg-blue-500/10' : 'text-text-secondary hover:text-text-primary hover:bg-brand-card'}`}>Dashboard</Link>
+            <Link to="/tickets" className={`px-3.5 py-1.5 rounded-lg text-sm font-medium transition-colors ${location.pathname.startsWith('/tickets') ? 'text-blue-400 bg-blue-500/10' : 'text-text-secondary hover:text-text-primary hover:bg-brand-card'}`}>Tickets</Link>
             <Link to="/profile" className={`px-3.5 py-1.5 rounded-lg text-sm font-medium transition-colors ${location.pathname === '/profile' ? 'text-blue-400 bg-blue-500/10' : 'text-text-secondary hover:text-text-primary hover:bg-brand-card'}`}>Profile</Link>
             {isAdmin() && (
               <Link to="/admin/users" className={`px-3.5 py-1.5 rounded-lg text-sm font-medium transition-colors ${location.pathname.startsWith('/admin') ? 'text-blue-400 bg-blue-500/10' : 'text-text-secondary hover:text-text-primary hover:bg-brand-card'}`}>
@@ -140,6 +142,8 @@ export default function Navbar() {
         <div className="p-3 pt-0 border-t border-brand-border flex flex-col gap-0.5 animate-fadeIn md:hidden bg-brand-primary/95 backdrop-blur-xl absolute top-16 left-0 right-0 border-b shadow-lg z-[190]">
           {currentUser ? (
             <>
+              <Link to="/dashboard" className="px-3 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:bg-brand-card hover:text-text-primary transition-colors text-left">Dashboard</Link>
+              <Link to="/tickets" className="px-3 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:bg-brand-card hover:text-text-primary transition-colors text-left">Support Tickets</Link>
               <Link to="/profile" className="px-3 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:bg-brand-card hover:text-text-primary transition-colors text-left">Profile</Link>
               <Link to="/notifications" className="px-3 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:bg-brand-card hover:text-text-primary transition-colors text-left">
                 Notifications {unreadCount > 0 && `(${unreadCount})`}

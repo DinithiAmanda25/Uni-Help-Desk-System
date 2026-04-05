@@ -11,6 +11,8 @@ import ProfilePage from './pages/ProfilePage';
 import NotificationsPage from './pages/NotificationsPage';
 import AdminUsersPage from './pages/AdminUsersPage';
 import AdminUserDetailPage from './pages/AdminUserDetailPage';
+import TicketsPage from './pages/TicketsPage';
+import CreateTicketPage from './pages/CreateTicketPage';
 
 export default function App() {
   return (
@@ -39,6 +41,16 @@ export default function App() {
             <Route path="/notifications" element={
               <ProtectedRoute>
                 <NotificationsPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/tickets" element={
+              <ProtectedRoute>
+                <TicketsPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/tickets/new" element={
+              <ProtectedRoute>
+                <CreateTicketPage />
               </ProtectedRoute>
             } />
 

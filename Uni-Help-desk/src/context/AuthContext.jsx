@@ -174,6 +174,62 @@ export function AuthProvider({ children }) {
     return null;
   };
 
+  const getTickets = async () => {
+    try {
+      const res = await fetch(`${API_BASE}/tickets`, {
+        headers: { 'Authorization': `Bearer ${currentUser.token}` }
+      });
+      if (res.ok) return await res.json();
+    } catch (err) { console.error(err); }
+    return [];
+  };
+
+  const getAllTickets = async () => {
+    try {
+      const res = await fetch(`${API_BASE}/tickets/all`, {
+        headers: { 'Authorization': `Bearer ${currentUser.token}` }
+      });
+      if (res.ok) return await res.json();
+    } catch (err) { console.error(err); }
+    return [];
+  };
+
+  const createTicket = async (ticketData) => {
+    try {
+      const res = await fetch(`${API_BASE}/tickets`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${currentUser.token}`
+        },
+        body: JSON.stringify(ticketData)
+      });
+      const data = await res.json();
+      return { success: res.ok, data, error: !res.ok ? data.message : null };
+    } catch (err) {
+      console.error(err);
+      return { success: false, error: 'Failed to create ticket' };
+    }
+  };
+
+  const updateTicketStatus = async (id, statusData) => {
+    try {
+      const res = await fetch(`${API_BASE}/tickets/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${currentUser.token}`
+        },
+        body: JSON.stringify(statusData)
+      });
+      const data = await res.json();
+      return { success: res.ok, data, error: !res.ok ? data.message : null };
+    } catch (err) {
+      console.error(err);
+      return { success: false, error: 'Failed to update ticket' };
+    }
+  };
+
   const getNotifications = async () => {
     try {
       const res = await fetch(`${API_BASE}/notifications`, {
@@ -224,6 +280,7 @@ export function AuthProvider({ children }) {
     <AuthContext.Provider value={{
       currentUser, loading, login, register, logout, updateProfile, updatePassword,
       getAllUsers, updateUser, deleteUser, getUserById,
+      getTickets, getAllTickets, createTicket, updateTicketStatus,
       notifications, markNotificationRead, markAllRead, unreadCount,
       isAdmin, isStaff, isStudent,
     }}>

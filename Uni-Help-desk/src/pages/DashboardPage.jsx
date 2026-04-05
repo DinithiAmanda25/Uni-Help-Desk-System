@@ -1,16 +1,22 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Book, LifeBuoy, Clock, Bell, Search, TrendingUp, Users, UserCheck } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export default function DashboardPage() {
-  const { currentUser, unreadCount, getAllUsers, isAdmin } = useAuth();
+  const { currentUser, unreadCount, getAllUsers, getTickets, getAllTickets, isAdmin } = useAuth();
   const [allUsers, setAllUsers] = useState([]);
+  const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchStats = async () => {
-      const users = await getAllUsers();
-      setAllUsers(users);
+      const [usersData, ticketsData] = await Promise.all([
+        getAllUsers(),
+        isAdmin() ? getAllTickets() : getTickets()
+      ]);
+      setAllUsers(usersData);
+      setTickets(ticketsData);
       setLoading(false);
     };
     fetchStats();
@@ -19,6 +25,9 @@ export default function DashboardPage() {
   // Stats calculation
   const totalUsers = allUsers.length;
   const activeUsers = allUsers.filter(u => u.isActive).length;
+  const openTickets = tickets.filter(t => t.status === 'open').length;
+  const pendingTickets = tickets.filter(t => t.status === 'pending').length;
+  const resolvedTickets = tickets.filter(t => t.status === 'resolved').length;
 
   return (
     <div className="flex flex-col gap-6 pt-2 pb-12 animate-fadeIn">
@@ -34,14 +43,14 @@ export default function DashboardPage() {
             Welcome back, {currentUser?.name}
           </h1>
           <p className="text-blue-50 text-sm sm:text-base mb-8 opacity-90 font-medium">
-            You have {isAdmin() ? '5 pending approvals' : '3 tickets requiring action'} and {unreadCount} new notifications.
+            You have {isAdmin() ? `${pendingTickets} pending approvals` : `${openTickets} open tickets`} and {unreadCount} new notifications.
           </p>
           
           <div className="flex flex-wrap items-center gap-4 mt-2">
-            <Link to="#" className="btn bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm shadow-sm">
-              <Search size={16} /> Browse Knowledge Base
+            <Link to="/tickets" className="btn bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm shadow-sm">
+              <Search size={16} /> View All Tickets
             </Link>
-            <Link to="#" className="btn bg-white text-blue-600 hover:bg-blue-50 shadow-md">
+            <Link to="/tickets/new" className="btn bg-white text-blue-600 hover:bg-blue-50 shadow-md">
               <LifeBuoy size={16} /> Submit Ticket
             </Link>
           </div>
@@ -79,8 +88,8 @@ export default function DashboardPage() {
               <div className="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center text-white mb-4 shadow-sm group-hover:scale-105 transition-transform">
                 <Clock size={24} />
               </div>
-              <div className="text-3xl font-black text-slate-800 mb-1">5</div>
-              <div className="text-sm text-slate-500 font-medium mb-3">Pending Requests</div>
+              <div className="text-3xl font-black text-slate-800 mb-1">{pendingTickets}</div>
+              <div className="text-sm text-slate-500 font-medium mb-3">Pending Tickets</div>
               <div className="text-xs font-bold text-orange-500 flex items-center gap-1"><span className="w-1.5 h-1.5 bg-orange-500 rounded-full"></span> Needs action</div>
             </div>
 
@@ -112,9 +121,9 @@ export default function DashboardPage() {
               <div className="w-12 h-12 bg-[#10b981] rounded-2xl flex items-center justify-center text-white mb-4 shadow-sm group-hover:scale-105 transition-transform">
                 <LifeBuoy size={24} />
               </div>
-              <div className="text-3xl font-black text-slate-800 mb-1">12</div>
+              <div className="text-3xl font-black text-slate-800 mb-1">{openTickets + pendingTickets}</div>
               <div className="text-sm text-slate-500 font-medium mb-3">Active Tickets</div>
-              <div className="text-xs font-bold text-green-500 flex items-center gap-1"><span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span> 4 resolved recently</div>
+              <div className="text-xs font-bold text-green-500 flex items-center gap-1"><span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span> {resolvedTickets} resolved recently</div>
             </div>
 
             <div className="card border-none ring-1 ring-slate-100 p-6 flex flex-col relative overflow-hidden group">
@@ -122,9 +131,9 @@ export default function DashboardPage() {
               <div className="w-12 h-12 bg-[#f59e0b] rounded-2xl flex items-center justify-center text-white mb-4 shadow-sm group-hover:scale-105 transition-transform">
                 <Clock size={24} />
               </div>
-              <div className="text-3xl font-black text-slate-800 mb-1">3</div>
+              <div className="text-3xl font-black text-slate-800 mb-1">{pendingTickets}</div>
               <div className="text-sm text-slate-500 font-medium mb-3">Pending Action</div>
-              <div className="text-xs font-bold text-[#10b981] flex items-center gap-1"><span className="w-1.5 h-1.5 bg-[#10b981] rounded-full"></span> Updates required</div>
+              <div className="text-xs font-bold text-[#10b981] flex items-center gap-1"><span className="w-1.5 h-1.5 bg-[#10b981] rounded-full"></span> Follow-up needed</div>
             </div>
 
             <div className="card border-none ring-1 ring-slate-100 p-6 flex flex-col relative overflow-hidden group">
