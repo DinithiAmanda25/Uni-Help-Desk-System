@@ -1,4 +1,6 @@
-const BASE_URL = "http://localhost:5000/api";
+// In dev, Vite proxies /api → http://localhost:5000/api (see vite.config.js)
+// In production, set VITE_API_URL to your backend URL (e.g. https://api.yourdomain.com/api)
+const BASE_URL = import.meta.env.VITE_API_URL || "/api";
 
 // ── Auth helpers ─────────────────────────────────────────────────────────────
 const getToken = () => localStorage.getItem("token");
