@@ -1,121 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+// Layouts
+import StudentLayout from "./Components/Resource and Library Management/Student/StudentLayout";
+import AdminLayout from "./Components/Resource and Library Management/Admin/AdminLayout";
+import LecturerLayout from "./Components/Resource and Library Management/Lecturer/LecturerLayout";
 
+// Student pages
+import StudentDashboard from "./Pages/StudentDashboard";
+import ResourceSearch from "./Components/Resource and Library Management/Student/ResourceSearch";
+import LibraryCatalog from "./Components/Resource and Library Management/Student/LibraryCatalog";
+import BookReservation from "./Components/Resource and Library Management/Student/BookReservation";
+import ResourceDetails from "./Components/Resource and Library Management/Student/ResourceDetails";
+import StudentNotifications from "./Components/Resource and Library Management/Student/StudentNotifications";
+import EbookReader from "./Components/Resource and Library Management/Student/EbookReader";
+
+// Admin pages
+import AdminDashboard from "./Components/Resource and Library Management/Admin/AdminDashboard";
+import UserManagement from "./Components/Resource and Library Management/Admin/UserManagement";
+import LibraryManagement from "./Components/Resource and Library Management/Admin/LibraryManagement";
+import SystemSettings from "./Components/Resource and Library Management/Admin/SystemSettings";
+
+// Lecturer pages
+import UploadResource from "./Components/Resource and Library Management/Lecturer/UploadResource";
+import ManageResources from "./Components/Resource and Library Management/Lecturer/ManageResources";
+import LecturerAnalytics from "./Components/Resource and Library Management/Lecturer/LecturerAnalytics";
+
+export default function App() {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <BrowserRouter>
+      <Routes>
+        {/* Default redirect */}
+        <Route path="/" element={<Navigate to="/student/dashboard" replace />} />
 
-      <div className="ticks"></div>
+        {/* Student portal */}
+        <Route path="/student" element={<StudentLayout />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<StudentDashboard />} />
+          <Route path="resources" element={<ResourceSearch />} />
+          <Route path="resources/:id" element={<ResourceDetails />} />
+          <Route path="library" element={<LibraryCatalog />} />
+          <Route path="library/reserve/:id" element={<BookReservation />} />
+          <Route path="library/read/:id" element={<EbookReader />} />
+          <Route path="notifications" element={<StudentNotifications />} />
+        </Route>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        {/* Admin portal */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="users" element={<UserManagement />} />
+          <Route path="library" element={<LibraryManagement />} />
+          <Route path="settings" element={<SystemSettings />} />
+        </Route>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        {/* Lecturer portal */}
+        <Route path="/lecturer" element={<LecturerLayout />}>
+          <Route index element={<Navigate to="upload" replace />} />
+          <Route path="upload" element={<UploadResource />} />
+          <Route path="manage" element={<ManageResources />} />
+          <Route path="analytics" element={<LecturerAnalytics />} />
+        </Route>
+
+        {/* Catch-all fallback */}
+        <Route path="*" element={<Navigate to="/student/dashboard" replace />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App
