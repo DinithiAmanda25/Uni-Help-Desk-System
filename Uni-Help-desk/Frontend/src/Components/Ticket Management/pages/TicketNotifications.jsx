@@ -40,7 +40,7 @@ function Notifications() {
       );
 
       if (notification.ticketId) {
-        navigate(`/comments/${notification.ticketId}`);
+        navigate(`/tickets/comments/${notification.ticketId}`);
       }
     } catch (error) {
       console.log("Error opening notification:", error);

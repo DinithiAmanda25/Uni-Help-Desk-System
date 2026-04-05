@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const streamifier = require("streamifier");
 const Ticket = require("../models/Ticket");
-const Notification = require("../models/Notification");
+const Notification = require("../models/TicketNotification");
 const cloudinary = require("../config/cloudinary");
 
 const createTicket = async (req, res) => {

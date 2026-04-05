@@ -130,3 +130,51 @@ export const adminAPI = {
     return request(`/admin/reservations${qs ? `?${qs}` : ""}`, { headers: authHeaders() });
   },
 };
+// ── Ticket Management ─────────────────────────────────────────────────────────
+export const ticketAPI = {
+  /** POST /api/tickets – create a ticket (supports file attachment via FormData) */
+  create: (formData) =>
+    fetch(`${BASE_URL}/tickets`, {
+      method: "POST",
+      body: formData,
+    }).then(async (res) => {
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.message || `HTTP ${res.status}`);
+      return data;
+    }),
+
+  /** GET /api/tickets */
+  getAll: () => request("/tickets"),
+
+  /** GET /api/tickets/student/:email */
+  getByStudent: (email) => request(`/tickets/student/${email}`),
+
+  /** PUT /api/tickets/assign/:id */
+  assign: (id, body) =>
+    request(`/tickets/assign/${id}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }),
+
+  /** PUT /api/tickets/status/:id */
+  updateStatus: (id, body) =>
+    request(`/tickets/status/${id}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }),
+
+  /** DELETE /api/tickets/:id */
+  delete: (id) => request(`/tickets/${id}`, { method: "DELETE" }),
+};
+
+export const commentAPI = {
+  /** POST /api/comments */
+  add: (body) =>
+    request("/comments", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }),
+
+  /** GET /api/comments/:ticketId */
+  getByTicket: (ticketId) => request(`/comments/${ticketId}`),
+};
+
+export const ticketNotificationAPI = {
+  /** GET /api/ticket-notifications */
+  getAll: () => request("/ticket-notifications"),
+
+  /** PUT /api/ticket-notifications/:id  (mark as read) */
+  markRead: (id) =>
+    request(`/ticket-notifications/${id}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ isRead: true }) }),
+};

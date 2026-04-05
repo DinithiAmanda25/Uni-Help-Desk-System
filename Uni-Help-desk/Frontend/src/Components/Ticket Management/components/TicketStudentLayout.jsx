@@ -1,52 +1,52 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
-function AdminLayout({ children }) {
+function TicketStudentLayout() {
   return (
     <div className="d-flex">
       <div className="sidebar">
-        <h4 className="p-3"> Admin</h4>
+        <h4 className="p-3">🎓 Student</h4>
 
         <ul className="nav flex-column px-3">
           <li className="nav-item mb-2">
             <NavLink
-              to="/admin"
+              to="/tickets/create"
               className={({ isActive }) =>
                 isActive ? "nav-link active" : "nav-link"
               }
             >
-              Dashboard
+              Create Ticket
             </NavLink>
           </li>
 
           <li className="nav-item mb-2">
             <NavLink
-              to="/admin/tickets"
+              to="/tickets/my"
               className={({ isActive }) =>
                 isActive ? "nav-link active" : "nav-link"
               }
             >
-              All Tickets
+              My Tickets
             </NavLink>
           </li>
 
           <li className="nav-item mb-2">
             <NavLink
-              to="/admin/new"
+              to="/tickets/notifications"
               className={({ isActive }) =>
                 isActive ? "nav-link active" : "nav-link"
               }
             >
-              New Tickets
+              Notifications
             </NavLink>
           </li>
         </ul>
       </div>
 
       <div className="flex-grow-1 p-4 dashboard-bg">
-        {children}
+        <Outlet />
       </div>
     </div>
   );
 }
 
-export default AdminLayout;
+export default TicketStudentLayout;

@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   getNotifications,
   markAsRead,
-} = require("../controllers/notificationController");
+} = require("../controllers/ticketNotificationController");
 
 router.get("/", getNotifications);
 router.put("/:id", markAsRead);

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
+// ── Resource & Library Management ────────────────────────────────────────────
 // Layouts
 import StudentLayout from "./Components/Resource and Library Management/Student/StudentLayout";
 import AdminLayout from "./Components/Resource and Library Management/Admin/AdminLayout";
@@ -25,6 +26,18 @@ import UploadResource from "./Components/Resource and Library Management/Lecture
 import ManageResources from "./Components/Resource and Library Management/Lecturer/ManageResources";
 import LecturerAnalytics from "./Components/Resource and Library Management/Lecturer/LecturerAnalytics";
 
+// ── Ticket Management ─────────────────────────────────────────────────────────
+import TicketStudentLayout from "./Components/Ticket Management/components/TicketStudentLayout.jsx";
+import TicketAdminLayout from "./Components/Ticket Management/components/TicketAdminLayout.jsx";
+import TicketStudentDashboard from "./Components/Ticket Management/pages/TicketStudentDashboard.jsx";
+import CreateTicket from "./Components/Ticket Management/pages/CreateTicket.jsx";
+import TicketList from "./Components/Ticket Management/pages/TicketList.jsx";
+import Comments from "./Components/Ticket Management/pages/Comments.jsx";
+import TicketNotifications from "./Components/Ticket Management/pages/TicketNotifications.jsx";
+import TicketAdminDashboard from "./Components/Ticket Management/pages/TicketAdminDashboard.jsx";
+import AdminTickets from "./Components/Ticket Management/pages/AdminTickets.jsx";
+import NewTickets from "./Components/Ticket Management/pages/NewTickets.jsx";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -32,6 +45,7 @@ export default function App() {
         {/* Default redirect */}
         <Route path="/" element={<Navigate to="/student/dashboard" replace />} />
 
+        {/* ── Resource & Library Management ─────────────────────────────── */}
         {/* Student portal */}
         <Route path="/student" element={<StudentLayout />}>
           <Route index element={<Navigate to="dashboard" replace />} />
@@ -61,9 +75,27 @@ export default function App() {
           <Route path="analytics" element={<LecturerAnalytics />} />
         </Route>
 
+        {/* ── Ticket Management ──────────────────────────────────────────── */}
+        {/* Ticket Student portal */}
+        <Route path="/tickets" element={<TicketStudentLayout />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<TicketStudentDashboard />} />
+          <Route path="create" element={<CreateTicket />} />
+          <Route path="my" element={<TicketList />} />
+          <Route path="comments/:id" element={<Comments />} />
+          <Route path="notifications" element={<TicketNotifications />} />
+        </Route>
+
+        {/* Ticket Admin portal */}
+        <Route path="/tickets/admin" element={<TicketAdminLayout />}>
+          <Route index element={<TicketAdminDashboard />} />
+          <Route path="tickets" element={<AdminTickets />} />
+          <Route path="new" element={<NewTickets />} />
+        </Route>
+
         {/* Catch-all fallback */}
         <Route path="*" element={<Navigate to="/student/dashboard" replace />} />
       </Routes>
     </BrowserRouter>
   );
-}
+}

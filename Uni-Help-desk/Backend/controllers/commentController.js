@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Comment = require("../models/Comment");
 const Ticket = require("../models/Ticket");
-const Notification = require("../models/Notification");
+const Notification = require("../models/TicketNotification");
 
 const addComment = async (req, res) => {
   try {

@@ -26,11 +26,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ── Routes ───────────────────────────────────────────────────────────────────
-app.use("/api/auth",          require("./routes/auth"));
-app.use("/api/resources",     require("./routes/resources"));
-app.use("/api/books",         require("./routes/library"));
-app.use("/api/notifications", require("./routes/notifications"));
-app.use("/api/admin",         require("./routes/admin"));
+app.use("/api/auth",                 require("./routes/auth"));
+app.use("/api/resources",            require("./routes/resources"));
+app.use("/api/books",                require("./routes/library"));
+app.use("/api/notifications",        require("./routes/notifications"));
+app.use("/api/admin",                require("./routes/admin"));
+
+// ── Ticket Management Routes ─────────────────────────────────────────────────
+app.use("/api/tickets",              require("./routes/tickets"));
+app.use("/api/comments",             require("./routes/comments"));
+app.use("/api/ticket-notifications", require("./routes/ticketNotifications"));
 
 // ── Health check ─────────────────────────────────────────────────────────────
 app.get("/api/health", (req, res) =>
